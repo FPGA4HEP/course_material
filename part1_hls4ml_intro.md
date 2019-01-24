@@ -10,11 +10,22 @@ source activate hls4ml-env
 
 2) Run the tool (with your favourite model)
 
+```
 cd keras-to-hls
 python keras-to-hls.py -c keras-config-FAVOURITE-MODEL.yml
+```
 
-3) Readout resource usage and latency from Vivado HLS
+This will create a folder called "my-hls-test". If you want to change the projectory directory name edit the yml configuration file.
 
-cd test
-./gather-reports.sh
+3) Run project design synthesis with Vivado HLS
 
+```
+cd my-hls-test
+vivado_hls -f build_prj.tcl
+```
+
+4) Readout resource usage and latency from the synthesis report
+
+```
+./gather-reports.sh -b
+```
