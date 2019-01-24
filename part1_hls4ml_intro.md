@@ -1,5 +1,4 @@
-1) Download and install the package
-
+### 1) Download and install the package
 ```
 git clone https://github.com/FPGA4HEP/hls4ml.git
 cd hls4ml
