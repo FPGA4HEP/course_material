@@ -27,6 +27,22 @@ vivado_hls -f build_prj.tcl
 ### Readout resource usage and latency from the synthesis report
 
 ```
-./gather-reports.sh -b
+./print-reports.sh
 ```
 
+### Extract and compare area under the ROC curve from keras (floating point calculations) and HLS (fixed point calculations)
+
+```
+python extract_roc.py -c keras-config-FAVOURITE-MODEL.yml
+```
+
+### EXERCISE:
+
+Change precision of calculations and reuse factor in the keras configuration file and check effect on NN performance (AUC) and FPGA resource usage using the scripts above.
+
+```
+ReuseFactor: N  # N = number of times a multiplier is used to do a computation 
+DefaultPrecision: ap_fixed<X,Y>  # X = total number of bits, Y = number of integer bits, X-Y = number of decimal bits
+```
+
+NB: suggest to change the project output directory in the keras configuration for each test to avoid overwriting of previous projects.
