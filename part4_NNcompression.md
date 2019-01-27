@@ -61,3 +61,5 @@ Now retrain the model (keeping the pruned weights fixed to 0) and evaluate the p
 python retrain.py -t t_allpar_new -i ../data/processed-pythia82-lhc13-all-pt1-50k-r1_h022_e0175_t220_nonu_truth.z -o retrain_3layer_relwmax4e-3 -m prune_3layer_relwmax4e-3/pruned_model.h5 -c train_config_threelayer.yml -d prune_3layer_relwmax4e-3/pruned_model_drop_weights.h5
 python eval.py -t t_allpar_new -i ../data/processed-pythia82-lhc13-all-pt1-50k-r1_h022_e0175_t220_nonu_truth.z -m retrain_3layer_relwmax4e-3/KERAS_check_best_model.h5 -c train_config_threelayer.yml -o eval_retrain_3layer_relwmax4e-3/
 ```
+
+Repeat the full procedure few times and copy the final compressed model (pruned weights .h5 file) to the hls4ml directory. Synthetise the FPGA project and compare resources and latency with what obtained with the full 3-layer model.
