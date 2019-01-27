@@ -63,3 +63,4 @@ python eval.py -t t_allpar_new -i ../data/processed-pythia82-lhc13-all-pt1-50k-r
 ```
 
 Repeat the full procedure few times and copy the final compressed model (pruned weights .h5 file) to the hls4ml directory. Synthetise the FPGA project and compare resources and latency with what obtained with the full 3-layer model.
+NB: when repeating the pruning+evaluation+retrain procedure remember to change the name of the output directory and input model.
