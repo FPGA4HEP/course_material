@@ -6,7 +6,7 @@ cd hls4ml
 source install_miniconda3.sh
 source ~/.bashrc
 source install.sh
-source activate hls4ml-env
+source activate hls4ml-env #every time you log in
 ```
 
 ### Run the tool (with your favourite model)
