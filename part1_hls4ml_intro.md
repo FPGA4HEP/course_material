@@ -4,6 +4,7 @@
 git clone https://github.com/FPGA4HEP/hls4ml.git
 cd hls4ml
 source install_miniconda3.sh
+source ~/.bashrc
 source install.sh
 source activate hls4ml-env
 ```
