@@ -6,6 +6,12 @@ cd hls4ml
 source install_miniconda3.sh
 source ~/.bashrc
 source install.sh
+```
+
+Every time you log in do:
+
+```
+source setup_hls4ml.sh
 source activate hls4ml-env #every time you log in
 ```
 
