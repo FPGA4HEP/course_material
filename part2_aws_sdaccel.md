@@ -4,7 +4,11 @@
 git clone https://github.com/FPGA4HEP/hls4ml_c.git
 ```
 
-Edit Makefile in the hls4ml_c directory to change default input directory name.
+Edit Makefile in the hls4ml_c directory to change default input directory name:
+
+```
+HLS4ML_PROJECT := my-hls-test-FAVOURITE-MODEL
+```
 
 ### Check out SDAccel and setup environment
 
