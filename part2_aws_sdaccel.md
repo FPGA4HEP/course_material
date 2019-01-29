@@ -29,17 +29,16 @@ or today you can also just follow this shorcut we have set up for you:
 
 ```
 cd ~/
-setup_sdaccel.sh
+source setup_sdaccel.sh
 ```
+
+NB: if you had hls4ml activated, you should log out/in first.
 
 More detailed information [here](https://github.com/aws/aws-fpga/tree/master/SDAccel)
 
 ### Run software simulation, hardware emulation and build FPGA binary
 
 ```
-cd ~/hls4ml
-source deactivate hls4ml-env
-cd ~/hls4ml_c
 make clean                                                                 
 make check TARGETS=sw_emu DEVICES=$AWS_PLATFORM all                 #software emulation
 make check TARGETS=hw_emu DEVICES=$AWS_PLATFORM all                 #hardware emulation
