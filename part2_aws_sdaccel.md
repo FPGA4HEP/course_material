@@ -1,3 +1,11 @@
+### Clone hls4ml wrapper for SDAccel
+
+```
+git clone https://github.com/FPGA4HEP/hls4ml_c.git
+```
+
+Edit Makefile in the hls4ml_c directory to change default input directory name.
+
 ### Check out SDAccel and setup environment
 
 ```
@@ -6,17 +14,21 @@ cd $AWS_FPGA_REPO_DIR
 source sdaccel_setup.sh #every time you log in
 ```
 
+Every time you login do:
+
+```
+cd $AWS_FPGA_REPO_DIR                                         
+source sdaccel_setup.sh
+```
+
+or today you can also just follow this shorcut we have set up for you:
+
+```
+cd ~/
+setup_sdaccel.sh
+```
+
 More detailed information [here](https://github.com/aws/aws-fpga/tree/master/SDAccel)
-
-### Clone hls4ml wrapper for SDAccel
-
-```
-cd ../../
-git clone https://github.com/FPGA4HEP/hls4ml_c.git
-```
-
-Edit Makefile in the hls4ml_c directory to change default input directory name.
-
 
 ### Run software simulation, hardware emulation and build FPGA binary
 
