@@ -64,6 +64,13 @@ sudo yum install -y xrt_*-aws.rpm
 source /home/centos/src/project_data/aws-fpga/sdaccel_runtime_setup.sh
 ``` 
 
+But today you can also just run these two scripts:
+
+```
+source setup_sdaccel_fpga_base.sh
+source setup_sdaccel_fpga.sh
+```
+
 Now copy the input features and keras prediction files from your hls4ml project directory on the T2 (my-hls-test-FAVOURITE-MODEL/tb_data/) to the F1 to pass it to the FPGA.
 
 Finally, you can accelerate your NN inference on the FPGA running on the input features:
