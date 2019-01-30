@@ -11,14 +11,6 @@ source install.sh
 source setup.sh # every time you log in
 ```
 
-Download the dataset from here: https://cernbox.cern.ch/index.php/s/jvFd5MoWhGs1l5v
-and copy it to a folder inside the keras-training directory:
-
-```
-cd keras-training
-mkdir data --> put the dataset file here
-```
-
 ### Training and evaluation of the [3-layer Dense NN](https://github.com/FPGA4HEP/keras-training/blob/master/models/models.py#L63-L76):
 
 ```
