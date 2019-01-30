@@ -12,7 +12,7 @@ Every time you log in do:
 
 ```
 source setup_hls4ml.sh
-source activate hls4ml-env #every time you log in
+source activate hls4ml-env
 ```
 
 ### Run the tool (with your favourite model)
