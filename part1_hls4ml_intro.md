@@ -15,6 +15,8 @@ source setup_hls4ml.sh
 source activate hls4ml-env
 ```
 
+Run as well ```git pull``` to fetch the latest changes.
+
 ### Run the tool (with your favourite model)
 
 ```
