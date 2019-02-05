@@ -2,6 +2,8 @@
 
 ```
 git clone https://github.com/FPGA4HEP/hls4ml_c.git
+cd hls4ml_c
+git pull #to fetch the latest changes
 ```
 
 Edit Makefile in the hls4ml_c directory to change default input directory name:
@@ -14,8 +16,6 @@ HLS4ML_PROJECT := my-hls-test-FAVOURITE-MODEL
 
 ```
 git clone https://github.com/aws/aws-fpga.git $AWS_FPGA_REPO_DIR  
-cd $AWS_FPGA_REPO_DIR                                         
-source sdaccel_setup.sh #every time you log in
 ```
 
 Every time you login do:
