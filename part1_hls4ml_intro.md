@@ -17,19 +17,20 @@ conda activate hls4ml-env
 
 Run as well ```git pull``` to fetch the latest changes.
 
-### Run the tool (with your favourite model)
+### Run the tool (with your favourite model, e.g. 1-layer)
 
 ```
 cd keras-to-hls
-python keras-to-hls.py -c keras-config-FAVOURITE-MODEL.yml
+export FAVOURITEMODEL=1layer
+python keras-to-hls.py -c keras-config-${FAVOURITEMODEL}.yml
 ```
 
-This will create a folder called "my-hls-test". If you want to change the projectory directory name edit the yml configuration file.
+This will create a folder called `my-hls-test-${FAVOURITEMODEL}`. If you want to change the projectory directory name edit the yml configuration file.
 
 ### Run project design synthesis with Vivado HLS
 
 ```
-cd my-hls-test
+cd my-hls-test-${FAVOURITEMODEL}
 vivado_hls -f build_prj.tcl
 ```
 If you get a runtime error from vivado, log out and prepend "LC_ALL=C" to your ssh command, ex.
@@ -40,13 +41,14 @@ LC_ALL=C ssh -i FPGA4HEP.pem centos@your-ip
 ### Readout resource usage and latency from the synthesis report
 
 ```
-./print-reports.sh
+cd ..
+./print-reports.sh my-hls-test-${FAVOURITEMODEL}
 ```
 
 ### Extract and compare area under the ROC curve from keras (floating point calculations) and HLS (fixed point calculations)
 
 ```
-python extract_roc.py -c keras-config-FAVOURITE-MODEL.yml
+python extract_roc.py -c keras-config-${FAVOURITEMODEL}.yml
 ```
 
 ### EXERCISE:
