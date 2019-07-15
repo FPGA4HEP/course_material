@@ -33,10 +33,7 @@ This will create a folder called `my-hls-test-${FAVOURITEMODEL}`. If you want to
 cd my-hls-test-${FAVOURITEMODEL}
 vivado_hls -f build_prj.tcl
 ```
-If you get a runtime error from vivado, log out and prepend "LC_ALL=C" to your ssh command, ex.
-```
-LC_ALL=C ssh -i FPGA4HEP.pem centos@your-ip
-```
+
 
 ### Readout resource usage and latency from the synthesis report
 
