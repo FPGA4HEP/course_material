@@ -1,10 +1,10 @@
 ### Download and install the package
 
 ```
-git clone https://github.com/FPGA4HEP/hls4ml.git
+git clone https://github.com/FPGA4HEP/hls4ml.git -b paris
 cd hls4ml
 source install_miniconda3.sh
-source ~/.bashrc
+source setup_hls4ml.sh
 source install.sh
 ```
 

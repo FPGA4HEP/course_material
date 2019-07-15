@@ -1,15 +1,16 @@
 ### Clone hls4ml wrapper for SDAccel
 
 ```
-git clone https://github.com/FPGA4HEP/hls4ml_c.git
+git clone https://github.com/FPGA4HEP/hls4ml_c.git -b paris
 cd hls4ml_c
 git pull #to fetch the latest changes
+export FAVOURITEMODEL=1layer # define your favorite model
 ```
 
-Edit Makefile in the hls4ml_c directory to change default input directory name:
+Note the `Makefile` in the `hls4ml_c` directory uses the `FAVOURITEMODEL` environment variable in the input directory name:
 
 ```
-HLS4ML_PROJECT := my-hls-test-FAVOURITE-MODEL
+HLS4ML_PROJECT := my-hls-test-$${FAVOURITEMODEL}
 ```
 
 ### Check out SDAccel and setup environment
@@ -25,14 +26,7 @@ cd $AWS_FPGA_REPO_DIR
 source sdaccel_setup.sh
 ```
 
-or today you can also just follow this shorcut we have set up for you:
-
-```
-cd ~/
-source setup_sdaccel.sh
-```
-
-NB: if you had hls4ml activated, you should log out/in first.
+NB: if you had `hls4ml-env` activated, you should log out/in first.
 
 More detailed information [here](https://github.com/aws/aws-fpga/tree/master/SDAccel)
 
@@ -44,10 +38,15 @@ make check TARGETS=sw_emu DEVICES=$AWS_PLATFORM all                 #software em
 make check TARGETS=hw_emu DEVICES=$AWS_PLATFORM all                 #hardware emulation
 make TARGETS=hw DEVICES=$AWS_PLATFORM all && ./create.sh            #firmware building
 ```
+To check it that the AFI was created properly:
+
+```
+./check.sh
+```
 
 ### Run on real FPGA
 
-Launch a F1 instance and copy the host and binary files (.awsxclbin) from the T2 (nb, first copy to your laptop). 
+Launch a F1 instance and copy the `host` and binary files (`.awsxclbin`) from the T2 (nb, first copy to your laptop/another server). 
 
 Setup the SDAccel environment on the F1 as well:
 
@@ -55,23 +54,15 @@ Setup the SDAccel environment on the F1 as well:
 git clone https://github.com/aws/aws-fpga.git $AWS_FPGA_REPO_DIR
 cd $AWS_FPGA_REPO_DIR 
 source sdaccel_setup.sh
+cd ~/hls4ml_c/
 sudo sh
-export VIVADO_TOOL_VERSION=2018.2
-curl -s https://s3.amazonaws.com/aws-fpga-developer-ami/1.5.0/Patches/xrt_201802.2.1.0_7.5.1804-xrt.rpm -o xrt_201802.2.1.0_7.5.1804-xrt.rpm
-curl -s https://s3.amazonaws.com/aws-fpga-developer-ami/1.5.0/Patches/xrt_201802.2.1.0_7.5.1804-aws.rpm -o xrt_201802.2.1.0_7.5.1804-aws.rpm
-sudo yum reinstall -y xrt_*-xrt.rpm
-sudo yum install -y xrt_*-aws.rpm
 source /home/centos/src/project_data/aws-fpga/sdaccel_runtime_setup.sh
+fpga-describe-local-image -S 0 -H # check current local image
+fpga-clear-local-image -S 0 # clear current local image
+fpga-describe-local-image -S 0 -H # check current local image again
 ``` 
 
-But today you can also just run these two scripts:
-
-```
-source setup_sdaccel_fpga_base.sh
-source setup_sdaccel_fpga.sh
-```
-
-Now copy the input features and keras prediction files from your hls4ml project directory on the T2 (my-hls-test-FAVOURITE-MODEL/tb_data/) to the F1 to pass it to the FPGA.
+Now copy the input features and keras prediction files from your hls4ml project directory on the T2 (`my-hls-test-${FAVOURITEMODEL}/tb_data/`) to the F1 to pass it to the FPGA.
 
 Finally, you can accelerate your NN inference on the FPGA running on the input features:
 
@@ -81,8 +72,8 @@ Finally, you can accelerate your NN inference on the FPGA running on the input f
 
 where N is number of batches of 32 events (suggest use N=6168 if use the provided input features list), and data_dir is the directory with input features and keras predictions files.
 
-The application will produce a file with the predictions from the FPGA run. Compare it with HLS and Keras calculations using the extract_roc.py script in the hls4ml directory on the T2 instance (nb, copy the tb_output_data.dat from the F1 to hls4ml/keras-to-hls directory on the T2)
+The application will produce a file with the predictions from the FPGA run. Compare it with HLS and Keras calculations using the extract_roc.py script in the hls4ml directory on the T2 instance (nb, copy the `tb_output_data.dat` from the F1 to `hls4ml/keras-to-hls` directory on the T2)
 
 ```
-python extract_roc.py -c keras-config-FAVOURITE-MODEL.yml -f tb_output_data.dat
+python extract_roc.py -c keras-config-${FAVOURITEMODEL}.yml -f tb_output_data.dat
 ```
