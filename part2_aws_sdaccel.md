@@ -35,6 +35,7 @@ More detailed information [here](https://github.com/aws/aws-fpga/tree/master/SDA
 ### Run software simulation, hardware emulation and build FPGA binary
 
 ```
+cd ~/hls4ml_c/
 make clean                                                                 
 make check TARGETS=sw_emu DEVICES=$AWS_PLATFORM all                 #software emulation
 make check TARGETS=hw_emu DEVICES=$AWS_PLATFORM all                 #hardware emulation
