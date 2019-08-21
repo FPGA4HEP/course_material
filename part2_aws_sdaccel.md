@@ -1,7 +1,7 @@
 ### Clone hls4ml wrapper for SDAccel
 
 ```
-git clone https://github.com/FPGA4HEP/hls4ml_c.git -b paris
+git clone https://github.com/FPGA4HEP/hls4ml_c.git -b fml
 cd hls4ml_c
 git pull #to fetch the latest changes
 export FAVOURITEMODEL=1layer # define your favorite model
