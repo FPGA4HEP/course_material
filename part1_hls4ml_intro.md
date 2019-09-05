@@ -1,28 +1,17 @@
 ### Download and install the package
 
 ```
-git clone https://github.com/FPGA4HEP/hls4ml.git -b fml
+git clone https://github.com/hls-fpga-machine-learning/hls4ml -b tutorial
 cd hls4ml
-source install_miniconda3.sh
-source setup_hls4ml.sh
-source install.sh
+pip install . # --user
 ```
-
-Every time you log in do:
-
-```
-source setup_hls4ml.sh
-conda activate hls4ml-env
-```
-
-Run as well ```git pull``` to fetch the latest changes.
 
 ### Run the tool (with your favourite model, e.g. 1-layer)
 
 ```
-cd keras-to-hls
+cd example-models
 export FAVOURITEMODEL=1layer
-python keras-to-hls.py -c keras-config-${FAVOURITEMODEL}.yml
+hls4ml convert -c keras-config-${FAVOURITEMODEL}.yml
 ```
 
 This will create a folder called `my-hls-test-${FAVOURITEMODEL}`. If you want to change the projectory directory name edit the yml configuration file.
@@ -30,21 +19,25 @@ This will create a folder called `my-hls-test-${FAVOURITEMODEL}`. If you want to
 ### Run project design synthesis with Vivado HLS
 
 ```
+hls4ml build -p my-hls-test-${FAVOURITEMODEL} -a
+```
+or alternatively:
+```
 cd my-hls-test-${FAVOURITEMODEL}
-vivado_hls -f build_prj.tcl
+vivado_hls -f build.tcl "csim=1 synth=1 cosim=1 export=1"
 ```
 
 
 ### Readout resource usage and latency from the synthesis report
 
 ```
-cd ..
-./print-reports.sh my-hls-test-${FAVOURITEMODEL}
+./print-reports.sh -d ./
 ```
 
 ### Extract and compare area under the ROC curve from keras (floating point calculations) and HLS (fixed point calculations)
 
 ```
+pip install scikit-learn matplotlib # --user
 python extract_roc.py -c keras-config-${FAVOURITEMODEL}.yml
 ```
 
