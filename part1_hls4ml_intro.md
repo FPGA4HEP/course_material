@@ -3,7 +3,8 @@
 ```
 git clone https://github.com/hls-fpga-machine-learning/hls4ml -b tutorial
 cd hls4ml
-pip install . # --user
+pip install . --user
+pip install enum --user
 ```
 
 ### Run the tool (with your favourite model, e.g. 1-layer)
@@ -24,7 +25,7 @@ hls4ml build -p my-hls-test-${FAVOURITEMODEL} -a
 or alternatively:
 ```
 cd my-hls-test-${FAVOURITEMODEL}
-vivado_hls -f build.tcl "csim=1 synth=1 cosim=1 export=1"
+vivado_hls -f build_prj.tcl "csim=1 synth=1 cosim=1 export=1"
 ```
 
 
