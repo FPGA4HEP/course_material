@@ -28,8 +28,6 @@ cd $AWS_FPGA_REPO_DIR
 source sdaccel_setup.sh
 ```
 
-NB: if you had `hls4ml-env` activated, you should log out/in first.
-
 More detailed information [here](https://github.com/aws/aws-fpga/tree/master/SDAccel)
 
 ### Run software simulation, hardware emulation and build FPGA binary
