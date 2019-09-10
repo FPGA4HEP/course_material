@@ -35,9 +35,9 @@ More detailed information [here](https://github.com/aws/aws-fpga/tree/master/SDA
 ```
 cd ~/hls4ml_c/
 make clean                                                                 
-make check TARGETS=sw_emu DEVICES=$AWS_PLATFORM all                 #software emulation
-make check TARGETS=hw_emu DEVICES=$AWS_PLATFORM all                 #hardware emulation
-make TARGETS=hw DEVICES=$AWS_PLATFORM all && ./create.sh            #firmware building
+make check TARGETS=sw_emu DEVICES=$AWS_PLATFORM all                        #software emulation
+make check TARGETS=hw_emu DEVICES=$AWS_PLATFORM all                        #hardware emulation
+make TARGETS=hw DEVICES=$AWS_PLATFORM all && rm -rf to_aws && ./create.sh  #firmware building
 ```
 To check it that the AFI was created properly:
 
