@@ -38,7 +38,7 @@ vivado_hls -f build_prj.tcl "csim=1 synth=1 cosim=1 export=1"
 ### Extract and compare area under the ROC curve from keras (floating point calculations) and HLS (fixed point calculations)
 
 ```
-pip install scikit-learn matplotlib # --user
+pip install scikit-learn matplotlib==1.5.3 --user
 python extract_roc.py -c keras-config-${FAVOURITEMODEL}.yml
 ```
 
