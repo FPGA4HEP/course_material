@@ -47,17 +47,7 @@ To check it that the AFI was created properly:
 
 ### Run on real FPGA
 
-If using a T2 instance previously, then  copy the `host` and binary files (`.awsxclbin`) from the T2 to the F1 (nb, first copy to your laptop/another server). 
-
-Setup the SDAccel environment on the F1 as well:
-
-```
-git clone https://github.com/aws/aws-fpga.git $AWS_FPGA_REPO_DIR
-cd $AWS_FPGA_REPO_DIR 
-source sdaccel_setup.sh
-```
-
-Otherwise, just run
+Run
 ```
 cd ~/hls4ml_c/
 sudo sh
@@ -68,18 +58,18 @@ fpga-clear-local-image -S 0 # clear current local image
 fpga-describe-local-image -S 0 -H # check current local image again
 ``` 
 
-Now copy the input features and keras prediction files from your hls4ml project directory on the T2 (`my-hls-test-${FAVOURITEMODEL}/tb_data/`) to the F1 to pass it to the FPGA. 
-
 Finally, you can accelerate your NN inference on the FPGA running on the input features:
 
 ```
-./host N data_dir
+./host 6168 ~/hls4ml/example-models/my-hls-test-${FAVOURITEMODEL}/tb_data
 ```
 
-where N is number of batches of 32 events (suggest use N=6168 if use the provided input features list), and data_dir is the directory with input features and keras predictions files.
+where 6168 is number of batches of 32 events (if you use the provided input features list), and data_dir is the directory with input features and keras predictions files.
 
-The application will produce a file with the predictions from the FPGA run. Compare it with HLS and Keras calculations using the extract_roc.py script in the hls4ml directory on the T2 instance (nb, copy the `tb_output_data.dat` from the F1 to `hls4ml/keras-to-hls` directory on the T2)
+The application will produce a file with the predictions from the FPGA run. Compare it with HLS and Keras calculations using the `extract_roc.py` script in the `hls4ml` directory.
 
 ```
+cp ~/hls4ml_c/tb_output_data.dat ~/hls4ml/example-models/
+cd ~/hls4ml/example-models/
 python extract_roc.py -c keras-config-${FAVOURITEMODEL}.yml -f tb_output_data.dat
 ```
