@@ -25,7 +25,7 @@ hls4ml build -p my-hls-test-${FAVOURITEMODEL} -c -s
 or alternatively:
 ```
 cd my-hls-test-${FAVOURITEMODEL}
-vivado_hls -f build_prj.tcl "csim=1 synth=1 cosim=1 export=1"
+vivado_hls -f build_prj.tcl "csim=1 synth=1 cosim=0 export=0"
 ```
 
 
