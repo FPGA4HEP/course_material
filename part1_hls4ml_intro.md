@@ -20,7 +20,7 @@ This will create a folder called `my-hls-test-${FAVOURITEMODEL}`. If you want to
 ### Run project design synthesis with Vivado HLS
 
 ```
-hls4ml build -p my-hls-test-${FAVOURITEMODEL} -a
+hls4ml build -p my-hls-test-${FAVOURITEMODEL} -c -s
 ```
 or alternatively:
 ```
