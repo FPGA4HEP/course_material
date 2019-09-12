@@ -1,5 +1,7 @@
 # course_material
 
+Part 0: [Setup](part0_setup.md)
+
 Part 1: [hls4ml Introduction](part1_hls4ml_intro.md)
 
 Part 2: [AWS + SDAccel](part2_aws_sdaccel.md)
