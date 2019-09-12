@@ -61,7 +61,9 @@ fpga-describe-local-image -S 0 -H # check current local image again
 Finally, you can accelerate your NN inference on the FPGA running on the input features:
 
 ```
-./host 6168 ~/hls4ml/example-models/my-hls-test-${FAVOURITEMODEL}/tb_data
+export FAVOURITEMODEL=1layer # define your favorite model
+./host 6168 /home/centos/hls4ml/example-models/my-hls-test-${FAVOURITEMODEL}/tb_data
+exit
 ```
 
 where 6168 is number of batches of 32 events (if you use the provided input features list), and data_dir is the directory with input features and keras predictions files.
@@ -69,7 +71,6 @@ where 6168 is number of batches of 32 events (if you use the provided input feat
 The application will produce a file with the predictions from the FPGA run. Compare it with HLS and Keras calculations using the `extract_roc.py` script in the `hls4ml` directory.
 
 ```
-cp ~/hls4ml_c/tb_output_data.dat ~/hls4ml/example-models/
 cd ~/hls4ml/example-models/
-python extract_roc.py -c keras-config-${FAVOURITEMODEL}.yml -f tb_output_data.dat
+python extract_roc.py -c keras-config-${FAVOURITEMODEL}.yml -f ~/hls4ml_c/tb_output_data.dat
 ```
